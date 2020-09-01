@@ -9,7 +9,7 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-Jobs:
+jobs:
 - job: Job1
   steps:
   - script: echo Hello, world, Yagna!
@@ -23,4 +23,4 @@ Jobs:
 - job: Job2
   steps:
   - script: echo, Yagna job2
-  
+
