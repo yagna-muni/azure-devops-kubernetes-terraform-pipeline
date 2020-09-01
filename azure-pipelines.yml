@@ -6,35 +6,42 @@
 trigger:
 - master
 
+strategy:
+  matrix:
+    linux:
+      operatingSystem: 'ubuntu-latest'
+    mac:
+      operatingSystem: 'macos-latest'
+
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: $(operatingSystem)   
 
 stages:
 - stage: Build
   jobs:
   - job: First
     steps:
-    - bash: echo First
-  - job: Second
-    steps:
-    - bash: echo Second
-- stage: DevDeploy
-  dependsOn: Build
-  jobs:
-  - job: Dev
-    steps:
-    - bash: echo Dev
-- stage: QADeploy
-  dependsOn: Build
-  jobs:
-  - job: QA
-    steps:
-    - bash: echo QA
-- stage: ProdDeploy
-  jobs:
-  - job: Prod
-    steps:
-    - bash: echo Prod
+    - bash: echo $(operatingSystem)
+#   - job: Second
+#     steps:
+#     - bash: echo Second
+# - stage: DevDeploy
+#   dependsOn: Build
+#   jobs:
+#   - job: Dev
+#     steps:
+#     - bash: echo Dev
+# - stage: QADeploy
+#   dependsOn: Build
+#   jobs:
+#   - job: QA
+#     steps:
+#     - bash: echo QA
+# - stage: ProdDeploy
+#   jobs:
+#   - job: Prod
+#     steps:
+#     - bash: echo Prod
 
 
 
