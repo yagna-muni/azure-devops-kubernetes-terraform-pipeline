@@ -16,21 +16,24 @@ strategy:
 pool:
   vmImage: $(operatingSystem)   
 
-stages:
-- stage: Build
-  jobs:
-  - job: First
-    steps:
-    - bash: echo $(operatingSystem)
+steps:
+- script: echo $(operatingSystem)
+  displayName: 'Run a one-line script'
+# stages:
+# - stage: Build
+#   jobs:
+#   - job: First
+#     steps:
+#     - bash: echo $(operatingSystem)
   # - job: Second
   #   steps:
   #   - bash: echo Second
-- stage: DevDeploy
-  dependsOn: Build
-  jobs:
-  - job: Dev
-    steps:
-    - bash: echo Dev
+# - stage: DevDeploy
+#   dependsOn: Build
+#   jobs:
+#   - job: Dev
+#     steps:
+#     - bash: echo Dev
 # - stage: QADeploy
 #   dependsOn: Build
 #   jobs:
