@@ -21,6 +21,6 @@ jobs:
 - job: Job2
   dependsOn: Job1
   steps:
-  - script: echo, Yagna job2
+  - script: echo, Yagna job2!
     displayName: 'Run a one-line script'
 
