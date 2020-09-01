@@ -16,9 +16,37 @@ strategy:
 pool:
   vmImage: $(operatingSystem)   
 
-steps:
-- script: echo $(operatingSystem)
-  displayName: 'Run a one-line script'
+stages:
+- stage: Build
+  jobs:
+  - job: Buildjob
+    steps:
+    - bash: echo "Do Build"
+- stage: Dev
+  jobs:
+  - deployment: DevDeployJob
+    environment: Dev
+    strategy:
+      runOnce:
+       deploy:
+         steps:
+           - script: echo deploy to dev
+- stage: QA
+  jobs:
+  - deployment: QADeployJob
+    environment: QA
+    strategy:
+      runOnce:
+       deploy:
+         steps:
+           - script: echo deploy to QA
+       
+
+
+
+# steps:
+# - script: echo $(operatingSystem)
+#   displayName: 'Run a one-line script'
 # stages:
 # - stage: Build
 #   jobs:
